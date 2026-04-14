@@ -1,55 +1,57 @@
-const N8N_URL = "TU_URL_DE_N8N_AQUI";
-const API_KEY = "TU_KEY_LARGA_AQUI";
+const N8N_URL =
+    "http://10.0.0.237:5678/webhook/bd5e43f1-e819-4347-b9d1-acf5d5edcee7";
+const API_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMDFlNTZmNi1jYzNlLTRlMjEtYjI4MS00YzMwNWEzOGY4ZjAiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiMjZlZjIzNzAtMTFhYS00YjBlLThlNDMtY2E3M2RmMDA0Nzk4IiwiaWF0IjoxNzc2MTc1Mjk2LCJleHAiOjE3NzY3NDQwMDB9.vbn8vVzqJeOGr33Y4LYb_alSYfeUn8GhIEqMXkugF5A";
 
 async function traerDatosDeN8n() {
     const cuerpoTabla = document.getElementById("tabla-cuerpo");
+    if (!cuerpoTabla) return;
 
     try {
-        console.log("Conectando a n8n...");
-
         const respuesta = await fetch(N8N_URL, {
-            method: "GET", // Cambia a "POST" si tu amigo lo configuró así
+            method: "GET",
             headers: {
-                "x-api-key": API_KEY, // Nombre estándar para la key
-                "Content-Type": "application/json",
-            },
+                "x-api-key": API_KEY
+            }
         });
-
-        if (!respuesta.ok) {
-            throw new Error(`Error en el servidor: ${respuesta.status}`);
-        }
 
         const datos = await respuesta.json();
-        console.log("Datos recibidos de n8n:", datos);
-
+        
+        // Limpiamos la tabla por si tiene datos viejos
         cuerpoTabla.innerHTML = "";
 
-        const listaFinal = Array.isArray(datos)
-            ? datos
-            : datos.data || datos.items || [datos];
+        // Si n8n devuelve un array directamente, lo usamos
+        datos.forEach((item) => {
+            const fila = document.createElement("tr");
 
-        listaFinal.slice(0, 20).forEach((item) => {
-            const fila = `
-                <tr>
-                    <td>${item.id || "N/A"}</td>
-                    <td>${item.ip || item.service_ip || "0.0.0.0"}</td>
-                    <td<
-                        <span class="badge $item.status === 'active' ? 'bg-success' : 'bg-secondary'">
-                            ${item.status || "desconocido"}
-                        </span>
-                    </td>
-                </tr>
+            // Extraemos los datos exactos de tu captura de pantalla
+            const id = item.ID || "N/A";
+            const nombre = item.nombre || "Sin nombre";
+            const ip = item.IP || "0.0.0.0";
+            const estadoTexto = item.Estado || "Desconocido";
+
+            // Lógica para el color del badge (Verde si dice ONLINE)
+            const esOnline = estadoTexto.includes("ONLINE");
+            const colorBadge = esOnline ? "bg-success" : "bg-danger";
+
+            fila.innerHTML = `
+                <td>${id}</td>
+                <td>${nombre}</td>
+                <td><strong>${ip}</strong></td>
+                <td>
+                    <span class="badge ${colorBadge}">
+                        ${estadoTexto}
+                    </span>
+                </td>
             `;
-            cuerpoTabla.innerHTML += fila;
+            cuerpoTabla.appendChild(fila);
         });
+
     } catch (error) {
-        console.error("Error al conectar con n8n:", error);
-        if (cuerpoTabla) {
-            cuerpoTabla.innerHTML = `<tr><td colspan="3" class="text-danger">Error: ${error.message}</td></tr>`;
-        }
+        console.error("Error al pintar los datos:", error);
+        cuerpoTabla.innerHTML = `<tr><td colspan="3">Error cargando datos...</td></tr>`;
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    traerDatosDeN8n();
-});
+// Ejecutar al cargar
+document.addEventListener("DOMContentLoaded", traerDatosDeN8n);

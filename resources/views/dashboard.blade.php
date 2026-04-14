@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Redes VIT</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
     <style>
         body {
-            background-color: #2d3748;
+            background-color: white;
             color: white;
         }
 
@@ -39,6 +39,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
+                                <th scope="col">Nombre del servicio</th>
                                 <th scope="col">IP del servicio</th>
                                 <th scope="col">Status</th>
                             </tr>
