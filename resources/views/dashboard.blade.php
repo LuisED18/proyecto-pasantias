@@ -9,50 +9,61 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <style>
         body {
-            background-color: white;
+            background-color: #2d3748;
             color: white;
         }
 
         .navbar {
             background-color: #2d3748;
         }
+
+        #container2 {
+            max-width: 900px;
+            margin-left: 350px;
+        }
+
+        @media (max-width: 768px) {
+            #container2 {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-dark shadow-sm p-3">
+    <nav class="border border border-dark border-2 shadow-lg p-1 navbar navbar-dark shadow-sm p-3">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1"><img src="{{ asset('images/logoVIT.png') }}" alt="Logo VIT"
                     style="max-width: 100px; margin: 0 auto;"></span>
             <div class="d-flex">
-                <span class="text-secondary me-3">Bienvenido, {{ Auth::user()->name }}</span>
-                <a href="/login" class="btn btn-outline-danger btn-sm">Salir</a>
+                <span class="text-ligth me-3">Bienvenido, {{ Auth::user()->name }}</span>
+                <a href="/login" class="btn btn-danger btn-sm">Salir</a>
             </div>
         </div>
     </nav>
-    <div class="container mt-5">
-        <div class="card bg-dark text-white border-secondary">
-            <div class="card-header">Datos de la API</div>
+    <div id="container2" class="container mt-5" >
+        <div class="card bg-dark text-white border-secondary border-3 shadow-lg rounded-3">
+            <div class="card-header font-weight-bold text-center border-white fs-1">Servicios</div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-dark table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre del servicio</th>
-                                <th scope="col">IP del servicio</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-cuerpo">
-                            <tr>
-                                <td colspan="3" class="text-center"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table table-dark table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre del servicio</th>
+                            <th scope="col">IP del servicio</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-cuerpo">
+                        <tr>
+                            <td colspan="4" class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

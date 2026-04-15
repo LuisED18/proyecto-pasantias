@@ -16,7 +16,7 @@ async function traerDatosDeN8n() {
         });
 
         const datos = await respuesta.json();
-        
+
         // Limpiamos la tabla por si tiene datos viejos
         cuerpoTabla.innerHTML = "";
 
@@ -49,7 +49,7 @@ async function traerDatosDeN8n() {
 
     } catch (error) {
         console.error("Error al pintar los datos:", error);
-        cuerpoTabla.innerHTML = `<tr><td colspan="3">Error cargando datos...</td></tr>`;
+        cuerpoTabla.innerHTML = `<tr><td colspan="4">Error cargando datos...</td></tr>`;
     }
 }
 
