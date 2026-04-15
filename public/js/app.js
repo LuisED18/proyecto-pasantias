@@ -3,6 +3,19 @@ const N8N_URL =
 const API_KEY =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMDFlNTZmNi1jYzNlLTRlMjEtYjI4MS00YzMwNWEzOGY4ZjAiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiMjZlZjIzNzAtMTFhYS00YjBlLThlNDMtY2E3M2RmMDA0Nzk4IiwiaWF0IjoxNzc2MTc1Mjk2LCJleHAiOjE3NzY3NDQwMDB9.vbn8vVzqJeOGr33Y4LYb_alSYfeUn8GhIEqMXkugF5A";
 
+function iniciarReloj() {
+    const relojElemento = document.getElementById("reloj");
+    if(!relojElemento)
+        return;
+
+    const actualizar = () => {
+        relojElemento.innerText = new Date().toLocaleTimeString();
+    };
+
+    setInterval(actualizar, 1000);
+    actualizar();
+}
+
 async function traerDatosDeN8n() {
     const cuerpoTabla = document.getElementById("tabla-cuerpo");
     if (!cuerpoTabla) return;
@@ -11,8 +24,8 @@ async function traerDatosDeN8n() {
         const respuesta = await fetch(N8N_URL, {
             method: "GET",
             headers: {
-                "x-api-key": API_KEY
-            }
+                "x-api-key": API_KEY,
+            },
         });
 
         const datos = await respuesta.json();
@@ -32,7 +45,7 @@ async function traerDatosDeN8n() {
 
             // Lógica para el color del badge (Verde si dice ONLINE)
             const esOnline = estadoTexto.includes("ONLINE");
-            const colorBadge = esOnline ? "bg-success" : "bg-danger";
+            const colorBadge = esOnline ? "bg-transparent" : "bg-transparent";
 
             fila.innerHTML = `
                 <td>${id}</td>
@@ -46,12 +59,16 @@ async function traerDatosDeN8n() {
             `;
             cuerpoTabla.appendChild(fila);
         });
-
     } catch (error) {
-        console.error("Error al pintar los datos:", error);
-        cuerpoTabla.innerHTML = `<tr><td colspan="4">Error cargando datos...</td></tr>`;
+        cuerpoTabla.innerHTML = `<tr><td colspan="4">Error cargando datos</td></tr>`;
     }
 }
 
 // Ejecutar al cargar
-document.addEventListener("DOMContentLoaded", traerDatosDeN8n);
+document.addEventListener("DOMContentLoaded", () => {
+
+    iniciarReloj();
+    traerDatosDeN8n();
+    
+    setInterval(traerDatosDeN8n, 60000);
+});

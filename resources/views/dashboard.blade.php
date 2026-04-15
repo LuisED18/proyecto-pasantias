@@ -11,6 +11,7 @@
         body {
             background-color: #2d3748;
             color: white;
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -19,30 +20,51 @@
 
         #container2 {
             max-width: 900px;
-            margin-left: 350px;
+            margin: 50px auto;
+            padding: 0 15px;
+        }
+
+        #reloj {
+            margin-right: 20px;
+            margin-top: -1px;
+
         }
 
         @media (max-width: 768px) {
-            #container2 {
-                margin-left: 0;
-                max-width: 100%;
+            .navbar .container-fluid {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .d-flex {
+                margin-top: 10px;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+
+            #reloj {
+                margin-right: 0px;
+
             }
         }
     </style>
 </head>
 
 <body>
-    <nav class="border border border-dark border-2 shadow-lg p-1 navbar navbar-dark shadow-sm p-3">
+    <nav class="border border border-dark border-1 shadow-lg p-1 navbar navbar-dark shadow-sm p-3">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1"><img src="{{ asset('images/logoVIT.png') }}" alt="Logo VIT"
                     style="max-width: 100px; margin: 0 auto;"></span>
             <div class="d-flex">
+                <h2 id="reloj" class="fs-5"></h2>
                 <span class="text-ligth me-3">Bienvenido, {{ Auth::user()->name }}</span>
                 <a href="/login" class="btn btn-danger btn-sm">Salir</a>
             </div>
         </div>
     </nav>
-    <div id="container2" class="container mt-5" >
+    <div id="container2" class="container mt-5">
         <div class="card bg-dark text-white border-secondary border-3 shadow-lg rounded-3">
             <div class="card-header font-weight-bold text-center border-white fs-1">Servicios</div>
             <div class="card-body">
