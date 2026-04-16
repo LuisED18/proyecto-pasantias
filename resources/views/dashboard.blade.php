@@ -7,49 +7,7 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
-    <style>
-        body {
-            background-color: #2d3748;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            background-color: #2d3748;
-        }
-
-        #container2 {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 15px;
-        }
-
-        #reloj {
-            margin-right: 20px;
-            margin-top: -1px;
-
-        }
-
-        @media (max-width: 768px) {
-            .navbar .container-fluid {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .d-flex {
-                margin-top: 10px;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-
-
-            #reloj {
-                margin-right: 0px;
-
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('app.css') }}">
 </head>
 
 <body>

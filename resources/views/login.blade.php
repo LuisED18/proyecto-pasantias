@@ -6,31 +6,6 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
-    <style>
-        body {
-            background-color: #2d3748;
-        }
-
-        .login-card {
-            background-color: #2d3748;
-            border: none;
-            border-radius: 15px;
-        }
-
-        .login-card .form-label {
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #38508C;
-            border: none;
-            border-radius: 15px;
-        }
-
-        .form-control {
-            border-radius: 15px;
-        }
-    </style>
 </head>
 
 <body class="d-flex align-items-center vh-100">
