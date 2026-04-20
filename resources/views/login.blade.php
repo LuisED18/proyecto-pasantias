@@ -10,8 +10,8 @@
 
 <body class="d-flex align-items-center vh-100">
     <div class="w-100 d-flex justify-content-center px-3">
-        <div class="border border-dark border-2 shadow-lg p-1" style="max-width: 460px; width: 100%; border-radius: 15px;">
-            <div class="card shadow-lg p-4 login-card">
+        <div class="style="max-width: 460px; width: 100%; border-radius: 15px;">
+            <div id="login-card" class="card shadow-lg p-4 login-card">
                 <img src="{{ asset('images/logoVIT.png') }}" alt="Logo VIT" class="img-fluid mb-3"
                     style="max-width: 150px; margin: 0 auto;">
                 @if ($errors->any())

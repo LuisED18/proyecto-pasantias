@@ -4,49 +4,77 @@ body {
     overflow-x: hidden;
 }
 
+#login-card{
+    background-color: #2d3748;
+    border: 3px solid #2d3748;
+    border-radius: 20px;
+    width: 460px;
+}
+
 .navbar {
     background-color: #2d3748;
 }
 
-#container2 {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 0 15px;
+/* SIDEBAR */
+#sidebar {
+    width: 200px;
+    min-width: 200px;
+    min-height: calc(100vh - 70px);
+    background-color: #1a2236;
+    border-right: 3px solid #38508c;
+    padding-top: 20px;
+    position: sticky;
+    top: 0;
 }
 
+#sidebar .sidebar-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #90cdf4;
+    padding: 0 16px 12px;
+}
+
+#sidebar .nav-link {
+    color: #a0aec0;
+    padding: 10px 16px;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+#sidebar .nav-link:hover,
+#sidebar .nav-link.active {
+    color: white;
+    background-color: rgba(56, 80, 140, 0.35);
+    border-left-color: #5a7fd4;
+}
+
+/* CONTENIDO PRINCIPAL */
+#main-content {
+    flex: 1;
+    padding: 24px;
+}
+
+/* NAVBAR */
 #reloj {
     margin-right: 20px;
     margin-top: -1px;
-}
-
-@media (max-width: 768px) {
-    .navbar .container-fluid {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .d-flex {
-        margin-top: 10px;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    #reloj {
-        margin-right: 0px;
-    }
-}
-
-.login-card {
-    background-color: #2d3748;
-    border: none;
-    border-radius: 15px;
-}
-
-.login-card .form-label {
     font-weight: bold;
 }
 
+#spanUser {
+    font-weight: bold;
+}
+
+#btnSalir {
+    font-weight: bold;
+}
+
+/* TABLA / CARD */
 .btn-primary {
     background-color: #38508c;
     border: none;
@@ -55,4 +83,31 @@ body {
 
 .form-control {
     border-radius: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        min-height: auto;
+        border-right: none;
+        border-bottom: 3px solid #38508c;
+    }
+
+    #sidebar .nav-link {
+        display: inline-flex;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        padding: 8px 14px;
+    }
+
+    #sidebar .nav-link.active,
+    #sidebar .nav-link:hover {
+        border-left-color: transparent;
+        border-bottom-color: #5a7fd4;
+    }
+
+    .d-flex.flex-column-mobile {
+        flex-direction: column;
+    }
 }

@@ -5,8 +5,7 @@ const API_KEY =
 
 function iniciarReloj() {
     const relojElemento = document.getElementById("reloj");
-    if(!relojElemento)
-        return;
+    if (!relojElemento) return;
 
     const actualizar = () => {
         relojElemento.innerText = new Date().toLocaleTimeString();
@@ -23,52 +22,43 @@ async function traerDatosDeN8n() {
     try {
         const respuesta = await fetch(N8N_URL, {
             method: "GET",
-            headers: {
-                "x-api-key": API_KEY,
-            },
+            headers: { "x-api-key": API_KEY },
         });
 
-        const datos = await respuesta.json();
+        if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
 
-        // Limpiamos la tabla por si tiene datos viejos
+        const datos = await respuesta.json();
         cuerpoTabla.innerHTML = "";
 
-        // Si n8n devuelve un array directamente, lo usamos
         datos.forEach((item) => {
             const fila = document.createElement("tr");
 
-            // Extraemos los datos exactos de tu captura de pantalla
             const id = item.ID || "N/A";
             const nombre = item.nombre || "Sin nombre";
             const ip = item.IP || "0.0.0.0";
             const estadoTexto = item.Estado || "Desconocido";
 
-            // Lógica para el color del badge (Verde si dice ONLINE)
-            const esOnline = estadoTexto.includes("ONLINE");
-            const colorBadge = esOnline ? "bg-transparent" : "bg-transparent";
+            const esOnline = estadoTexto.toUpperCase().includes("ONLINE");
+            const colorBadge = esOnline ? "bg-success" : "bg-danger";
 
             fila.innerHTML = `
                 <td>${id}</td>
                 <td>${nombre}</td>
                 <td><strong>${ip}</strong></td>
-                <td>
-                    <span class="badge ${colorBadge}">
-                        ${estadoTexto}
-                    </span>
-                </td>
+                <td><span class="badge ${colorBadge}">${estadoTexto}</span></td>
             `;
             cuerpoTabla.appendChild(fila);
         });
     } catch (error) {
-        cuerpoTabla.innerHTML = `<tr><td colspan="4">Error cargando datos</td></tr>`;
+        console.error("Error:", error);
+        cuerpoTabla.innerHTML = `
+            <tr>
+                <td colspan="4" class="text-center text-danger fw-bold">
+                    Error cargando datos: ${error.message}
+                </td>
+            </tr>`;
     }
 }
-
-// Ejecutar al cargar
-document.addEventListener("DOMContentLoaded", () => {
-
-    iniciarReloj();
-    traerDatosDeN8n();
-    
-    setInterval(traerDatosDeN8n, 60000);
-});
+iniciarReloj();
+traerDatosDeN8n();
+setInterval(traerDatosDeN8n, 60000);
