@@ -59,14 +59,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>RAM</th>
-                                <th>ROM</th>
-                                <th>CPU</th>
+                                <th>SO</th>
                             </tr>
                         </thead>
-                        <tbody id="">
+                        <tbody id="tabla-specs">
                             <tr>
-                                <td colspan="6" class="text-center"></td>
+                                <td colspan="3" class="text-center"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -77,6 +75,9 @@
         </div>
 
     </div>
+
+    <script src="{{ asset('js/appSpecs.js') }}"></script>
+
 
 </body>
 
