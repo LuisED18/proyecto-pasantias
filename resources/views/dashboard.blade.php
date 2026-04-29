@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
 
     <nav class="border-dark border-bottom shadow-lg p-2 navbar navbar-dark">
@@ -31,7 +34,7 @@
                     <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="/dashboard">
                         <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+                                d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
                         </svg>
                         Servicios
                     </a>
@@ -58,14 +61,10 @@
                                 <th>ID</th>
                                 <th>Nombre del servicio</th>
                                 <th>IP del servicio</th>
-                                <th>Status</th>
+                                <th colspan="2">Status</th>
                             </tr>
                         </thead>
-                        <tbody id="tabla-cuerpo">
-                            <tr>
-                                <td colspan="4" class="text-center"></td>
-                            </tr>
-                        </tbody>
+                        <tbody id="tabla-cuerpo"></tbody>
                     </table>
                 </div>
             </div>
@@ -73,6 +72,11 @@
 
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/graficas.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+
 </html>

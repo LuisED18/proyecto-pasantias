@@ -112,3 +112,25 @@ body {
         flex-direction: column;
     }
 }
+
+/* Estilo para que el fondo de la gráfica sea total */
+.bg-graficas {
+    background-color: #1a222f !important; /* Azul oscuro total */
+    width: 100%;
+}
+
+/* Eliminamos cualquier borde o sombra que Bootstrap ponga por defecto en el colapso */
+.collapse.bg-graficas {
+    border: none;
+}
+
+/* Ajuste para que la fila interna no tenga márgenes laterales */
+.bg-graficas .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* OPCIONAL: Si quieres una línea sutil que separe el desplegable de la fila de arriba */
+#collapseServidor1 {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

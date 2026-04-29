@@ -1,7 +1,7 @@
 const N8N_URL_SPECS =
     "http://10.0.0.237:5678/webhook/f3aad6c4-0fdb-4639-94ce-6689535a2107";
 const API_KEY_SPECS =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMDFlNTZmNi1jYzNlLTRlMjEtYjI4MS00YzMwNWEzOGY4ZjAiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiMzc5MzdhYWEtYjY3Ni00ODdlLTkyOGMtYjdiZDliYmI1M2ZjIiwiaWF0IjoxNzc2Nzc0MTg4LCJleHAiOjE3NzczNDg4MDB9.nQ6OP0oIV-G5BzUCfAZPypCxtiEXBA3sJUDTWDEOffk";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMDFlNTZmNi1jYzNlLTRlMjEtYjI4MS00YzMwNWEzOGY4ZjAiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiMzUyNmIxY2MtYTlmZi00OTAxLWI1NTYtNjZmNDQ3MTQ1MWE4IiwiaWF0IjoxNzc3NDY3Njg4fQ.E5XvJwZWy1BgdOZ3hvfvdk43aG-ZsylF3qNCUBl6ETU";
 
 function iniciarReloj() {
     const relojElemento = document.getElementById("reloj");
